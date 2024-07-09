@@ -1,0 +1,11 @@
+.vscode/
+__pycharm__
+.ipynb_checkpoints/
+.idea/
+*.log
+*.env
+*.bat
+*.parquet
+*.csv
+*.pickle
+*.pkl
