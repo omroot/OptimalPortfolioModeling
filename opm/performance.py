@@ -176,3 +176,31 @@ def compute_maximum_drawdown(weights: pd.DataFrame,
     # Return the daily drawdown series
     return daily_drawdown
 
+
+import pandas as pd
+import numpy as np
+
+
+def portfolio_turnover(weights_today: pd.Series, weights_yesterday: pd.Series) -> float:
+    """
+    Calculate the daily portfolio turnover.
+
+    Parameters:
+    weights_today (pd.Series): Weights of assets today (time t).
+    weights_yesterday (pd.Series): Weights of assets yesterday (time t-1).
+
+    Returns:
+    float: Portfolio turnover for the day.
+    """
+    # Calculate the absolute difference in portfolio weights
+    turnover = np.abs(weights_today - weights_yesterday).sum() / 2
+    return turnover
+
+
+# Example data
+weights_t = pd.Series({'Asset1': 0.3, 'Asset2': 0.5, 'Asset3': 0.2})  # Weights at time t
+weights_t_minus_1 = pd.Series({'Asset1': 0.25, 'Asset2': 0.55, 'Asset3': 0.2})  # Weights at time t-1
+
+# Calculate daily turnover
+daily_turnover = portfolio_turnover(weights_t, weights_t_minus_1)
+print(f'Daily Turnover: {daily_turnover:.4f}')
